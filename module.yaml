@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "repository": "career-semantic",
+  "modules": [
+    {
+      "id": "classify-extract",
+      "entrypoint": "POST /v1/run"
+    },
+    {
+      "id": "embed-similarity",
+      "entrypoint": "POST /v1/run"
+    },
+    {
+      "id": "retrieve-rag",
+      "entrypoint": "POST /v1/run"
+    }
+  ],
+  "contracts": {
+    "run": "career-service-core/contracts-core@1.0.0",
+    "lineage": "OpenLineage 2.0.2"
+  },
+  "data_policy": "public-safe synthetic inputs only"
+}

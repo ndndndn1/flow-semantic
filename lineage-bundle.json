@@ -1,0 +1,37 @@
+{
+  "eventType": "COMPLETE",
+  "eventTime": "2026-08-13T00:00:00Z",
+  "run": {
+    "runId": "bootstrap-career-semantic",
+    "facets": {
+      "career.flowprint": {
+        "traceId": "bootstrap-career-semantic"
+      }
+    }
+  },
+  "job": {
+    "namespace": "career.modules",
+    "name": "career-semantic"
+  },
+  "inputs": [
+    {
+      "namespace": "career",
+      "name": "requirements-v2"
+    }
+  ],
+  "outputs": [
+    {
+      "namespace": "career.modules",
+      "name": "classify-extract"
+    },
+    {
+      "namespace": "career.modules",
+      "name": "embed-similarity"
+    },
+    {
+      "namespace": "career.modules",
+      "name": "retrieve-rag"
+    }
+  ],
+  "producer": "https://github.com/ndndndn1/career-semantic"
+}
