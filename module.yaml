@@ -1,22 +1,161 @@
 {
-  "schema_version": "1.0.0",
-  "repository": "career-semantic",
+  "schema_version": "1.1.0",
+  "package_version": "0.2.0",
+  "repository": "flow-semantic",
   "modules": [
     {
       "id": "classify-extract",
-      "entrypoint": "POST /v1/run"
+      "module_ref": "flow-semantic/classify-extract@0.2.0",
+      "version": "0.2.0",
+      "schema_version": "1.1.0",
+      "entrypoint": "POST /v1/run",
+      "input_ports": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "spans": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "additionalProperties": true
+      },
+      "output_ports": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "extracted": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true,
+        "required": [
+          "labels",
+          "extracted"
+        ]
+      },
+      "schema_hash": "sha256:d2e81310e990891c75a53b927c6a08d1d0517e10d4a64c87a3a8801a57844589"
     },
     {
       "id": "embed-similarity",
-      "entrypoint": "POST /v1/run"
+      "module_ref": "flow-semantic/embed-similarity@0.2.0",
+      "version": "0.2.0",
+      "schema_version": "1.1.0",
+      "entrypoint": "POST /v1/run",
+      "input_ports": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "string"
+          },
+          "right": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      },
+      "output_ports": {
+        "type": "object",
+        "properties": {
+          "cosine_similarity": {
+            "type": "number"
+          },
+          "dimensions": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": true,
+        "required": [
+          "cosine_similarity",
+          "dimensions"
+        ]
+      },
+      "schema_hash": "sha256:d52def92ee18480eeda15481efd04ec1c181b58686bc9c884e1b643a249c003e"
     },
     {
       "id": "retrieve-rag",
-      "entrypoint": "POST /v1/run"
+      "module_ref": "flow-semantic/retrieve-rag@0.2.0",
+      "version": "0.2.0",
+      "schema_version": "1.1.0",
+      "entrypoint": "POST /v1/run",
+      "input_ports": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {},
+                "text": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": true
+      },
+      "output_ports": {
+        "type": "object",
+        "properties": {
+          "hits": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          },
+          "context": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true,
+        "required": [
+          "hits",
+          "context"
+        ]
+      },
+      "schema_hash": "sha256:9547d4296cc283302a900f81960d4fb9d837d8dfe1ec105fe24517f2489b73f2"
     }
   ],
   "contracts": {
-    "run": "career-service-core/contracts-core@1.0.0",
+    "run": "flow-service-core/contracts-core@0.2.0",
     "lineage": "OpenLineage 2.0.2"
   },
   "data_policy": "public-safe synthetic inputs only"

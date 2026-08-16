@@ -3,7 +3,7 @@ from __future__ import annotations
 import uuid
 from typing import Any
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "1.1.0"
 
 
 def op_classify_extract(data):

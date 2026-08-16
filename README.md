@@ -1,4 +1,4 @@
-# career-semantic
+# flow-semantic
 
         Classification, extraction, similarity, retrieval, and grounded context.
 
@@ -9,9 +9,11 @@
 - `retrieve-rag`
 
         Every module accepts `{"module": "...", "input": {...}, "run_id": "optional"}`
-        through `POST /v1/run`; `GET /healthz` reports readiness. The runtime is deterministic and
-        has no network or model dependency. `coverage.json` contains only capability IDs and an
-        immutable corpus snapshot ID—never private job-posting text or MongoDB identifiers.
+        through `POST /v1/run`; `GET /healthz` reports readiness. `GET /v1/modules` and
+        `GET /v1/modules/{id}` expose versioned input/output JSON Schemas and their canonical
+        SHA-256 hash. The runtime is deterministic and has no network, MongoDB, lineage service, or
+        model dependency. `coverage.json` contains only capability IDs and an immutable corpus
+        snapshot ID—never private job-posting text or MongoDB identifiers.
 
         ```bash
         uv sync --extra dev
