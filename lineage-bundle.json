@@ -2,36 +2,36 @@
   "eventType": "COMPLETE",
   "eventTime": "2026-08-13T00:00:00Z",
   "run": {
-    "runId": "bootstrap-career-semantic",
+    "runId": "bootstrap-flow-semantic",
     "facets": {
-      "career.flowprint": {
-        "traceId": "bootstrap-career-semantic"
+      "flow.flowprint": {
+        "traceId": "bootstrap-flow-semantic"
       }
     }
   },
   "job": {
-    "namespace": "career.modules",
-    "name": "career-semantic"
+    "namespace": "flow.modules",
+    "name": "flow-semantic"
   },
   "inputs": [
     {
-      "namespace": "career",
-      "name": "requirements-v2"
+      "namespace": "flow",
+      "name": "workflow-input"
     }
   ],
   "outputs": [
     {
-      "namespace": "career.modules",
+      "namespace": "flow.modules",
       "name": "classify-extract"
     },
     {
-      "namespace": "career.modules",
+      "namespace": "flow.modules",
       "name": "embed-similarity"
     },
     {
-      "namespace": "career.modules",
+      "namespace": "flow.modules",
       "name": "retrieve-rag"
     }
   ],
-  "producer": "https://github.com/ndndndn1/career-semantic"
+  "producer": "https://github.com/ndndndn1/flow-semantic"
 }

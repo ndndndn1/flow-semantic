@@ -1,9 +1,9 @@
 {
-  "corpus_snapshot": "corpus-f699e281f16de870",
+  "source": "generated-contract-catalog",
   "capabilities": [
     "classify-extract",
     "embed-similarity",
     "retrieve-rag"
   ],
-  "raw_requirement_text": false
+  "private_source_data": false
 }

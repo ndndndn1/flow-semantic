@@ -11,4 +11,4 @@ jobs:
       - run: uv sync --extra dev --locked
       - run: uv run pytest -q
       - run: uv run ruff check .
-      - run: docker build -t career-module:test .
+      - run: docker build -t flow-module:test .

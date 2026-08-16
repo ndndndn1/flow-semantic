@@ -3,8 +3,10 @@ from __future__ import annotations
 import argparse
 import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import unquote, urlparse
 
-from .runtime import OPERATIONS, dispatch
+from .catalog import CATALOG, MODULES_BY_ID
+from .runtime import dispatch
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -17,8 +19,18 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if self.path == "/healthz":
-            self._send(200, {"status": "ok", "modules": sorted(OPERATIONS)})
+        path = urlparse(self.path).path
+        if path == "/healthz":
+            self._send(200, {"status": "ok", "modules": sorted(MODULES_BY_ID)})
+        elif path == "/v1/modules":
+            self._send(200, CATALOG)
+        elif path.startswith("/v1/modules/"):
+            module_id = unquote(path.removeprefix("/v1/modules/"))
+            module = MODULES_BY_ID.get(module_id)
+            if module is None:
+                self._send(404, {"error": f"unknown module: {module_id}"})
+            else:
+                self._send(200, module)
         else:
             self._send(404, {"error": "not found"})
 
